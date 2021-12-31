@@ -29,6 +29,7 @@
 
 /* _____________ Your Code Here _____________ */
 
+// https://github.com/type-challenges/type-challenges/issues/149
 type LookUp<U, T> = U extends { type: T } ? U : never;
 
 /* _____________ Test Cases _____________ */
