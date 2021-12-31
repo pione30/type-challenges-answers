@@ -23,6 +23,7 @@
 
 /* _____________ Your Code Here _____________ */
 
+// https://github.com/type-challenges/type-challenges/issues/508
 type Awaited<T> = T extends Promise<infer Wrapped> ? Awaited<Wrapped> : T;
 
 declare function PromiseAll<T extends unknown[]>(
