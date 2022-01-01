@@ -18,15 +18,9 @@
 */
 
 /* _____________ Your Code Here _____________ */
-type Falsy = 0 | "" | false | [];
+type Falsy = 0 | "" | false | [] | { [k: string]: never };
 
-type AnyOf<T extends readonly any[]> = T extends [infer Head, ...infer Tail]
-  ? Head extends Falsy
-    ? AnyOf<Tail>
-    : keyof Head extends never
-    ? AnyOf<Tail>
-    : true
-  : false;
+type AnyOf<T extends readonly any[]> = T[number] extends Falsy ? false : true;
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from "@type-challenges/utils";
