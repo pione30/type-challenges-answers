@@ -11,39 +11,12 @@
 */
 
 /* _____________ Your Code Here _____________ */
-type CapitalChar =
-  | "A"
-  | "B"
-  | "C"
-  | "D"
-  | "E"
-  | "F"
-  | "G"
-  | "H"
-  | "I"
-  | "J"
-  | "K"
-  | "L"
-  | "M"
-  | "N"
-  | "O"
-  | "P"
-  | "Q"
-  | "R"
-  | "S"
-  | "T"
-  | "U"
-  | "V"
-  | "W"
-  | "X"
-  | "Y"
-  | "Z";
 
 type KebabCaseWithOptionalPrefix<S extends string> =
   S extends `${infer Head}${infer Tail}`
-    ? Head extends CapitalChar
-      ? `-${Lowercase<Head>}${KebabCaseWithOptionalPrefix<Tail>}`
-      : `${Head}${KebabCaseWithOptionalPrefix<Tail>}`
+    ? Head extends Lowercase<Head>
+      ? `${Head}${KebabCaseWithOptionalPrefix<Tail>}`
+      : `-${Lowercase<Head>}${KebabCaseWithOptionalPrefix<Tail>}`
     : S;
 
 type KebabCase<S extends string> = S extends "-"
