@@ -38,8 +38,6 @@ type AllCombinations<
       | AllCombinations<Tail>
   : S;
 
-type debug = AllCombinations<"AB">;
-
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from "@type-challenges/utils";
 
