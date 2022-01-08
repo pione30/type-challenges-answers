@@ -32,13 +32,13 @@ type FillHelper<
   Start extends number,
   End extends number,
   Acc extends unknown[] = []
-> = T extends [infer Head, ...infer Tail]
-  ? Start extends Acc["length"]
-    ? FillStart<T, N, End, Acc>
-    : FillHelper<Tail, N, Start, End, [...Acc, Head]>
+> = Start extends Acc["length"]
+  ? FillStarted<T, N, End, Acc>
+  : T extends [infer Head, ...infer Tail]
+  ? FillHelper<Tail, N, Start, End, [...Acc, Head]>
   : Acc;
 
-type FillStart<
+type FillStarted<
   T extends unknown[],
   N,
   End extends number,
@@ -46,7 +46,7 @@ type FillStart<
 > = End extends Acc["length"]
   ? [...Acc, ...T]
   : T extends [infer Head, ...infer Tail]
-  ? FillStart<Tail, N, End, [...Acc, N]>
+  ? FillStarted<Tail, N, End, [...Acc, N]>
   : Acc;
 
 /* _____________ Test Cases _____________ */
