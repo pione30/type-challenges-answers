@@ -18,14 +18,10 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Without<T extends unknown[], U> = T extends [infer Head, ...infer Tail]
-  ? Head extends U
-    ? Without<Tail, U>
-    : [Head, ...Without<Tail, U>]
-  : T;
-
-type Unique<T extends unknown[]> = T extends [infer Head, ...infer Tail]
-  ? [Head, ...Unique<Without<Tail, Head>>]
+type Unique<T extends unknown[]> = T extends [...infer Rest, infer Last]
+  ? Last extends Rest[number]
+    ? Unique<Rest>
+    : [...Unique<Rest>, Last]
   : T;
 
 /* _____________ Test Cases _____________ */
