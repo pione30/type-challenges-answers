@@ -19,22 +19,16 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Rotation<
-  S extends string,
-  OriginalS extends string
-> = S extends `${infer Head}${infer Tail}`
-  ? `${Tail}${Head}` extends OriginalS
-    ? OriginalS
-    : AllCombinations<`${Tail}${Head}`, OriginalS>
-  : never;
-
 type AllCombinations<
   S extends string,
   OriginalS extends string = S
 > = S extends `${infer Head}${infer Tail}`
   ?
       | `${Head}${AllCombinations<Tail>}`
-      | Rotation<S, OriginalS>
+      // rotation
+      | (`${Tail}${Head}` extends OriginalS
+          ? OriginalS
+          : AllCombinations<`${Tail}${Head}`, OriginalS>)
       | AllCombinations<Tail>
   : S;
 
