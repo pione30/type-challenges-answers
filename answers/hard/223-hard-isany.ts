@@ -14,7 +14,7 @@
 
 /* _____________ Your Code Here _____________ */
 
-type IsAny<T> = [{}, T] extends [T, {}] ? true : false;
+type IsAny<T> = [{}, T] extends [T, null] ? true : false;
 
 /* _____________ Test Cases _____________ */
 import { Equal, Expect } from "@type-challenges/utils";
